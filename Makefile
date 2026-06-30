@@ -1,11 +1,21 @@
-# Crimes Against Causality — book build
+# Crimes Against Causality — website backbone
 #
-#   make build     regenerate book/ from the case-studies/ Markdown
+#   make cases     clone/update the case content (crimes-against-causality/cases)
+#   make build     regenerate book/ from case-studies/
 #   make preview   build, then open a live-reloading preview
 #   make render    build, then render the static site into book/_book
 #   make clean      remove generated chapters and rendered output
 
-.PHONY: build preview render clean
+CASES_REPO ?= https://github.com/crimes-against-causality/cases.git
+
+.PHONY: cases build preview render clean
+
+cases:
+	@if [ -d case-studies/.git ]; then \
+		echo "Updating case-studies/ ..."; git -C case-studies pull --ff-only; \
+	else \
+		echo "Cloning case content ..."; git clone $(CASES_REPO) case-studies; \
+	fi
 
 build:
 	Rscript scripts/build-book.R

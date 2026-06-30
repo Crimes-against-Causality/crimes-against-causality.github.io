@@ -3,6 +3,10 @@ name: Publish book
 on:
   push:
     branches: [main]
+  # Fired by the cases repository (crimes-against-causality/cases) whenever its
+  # content changes, so the site rebuilds with the latest cases.
+  repository_dispatch:
+    types: [cases-updated]
   workflow_dispatch:
 
 permissions:
@@ -19,8 +23,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out
+      - name: Check out site backbone
         uses: actions/checkout@v4
+
+      - name: Fetch case content
+        run: git clone --depth 1 https://github.com/crimes-against-causality/cases.git case-studies
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

@@ -4,7 +4,10 @@
 # build-book.R
 # -----------------------------------------------------------------------------
 # Generates the Quarto book under book/ from the author-edited Markdown files
-# in case-studies/.
+# in case-studies/. That content is maintained in a separate repository
+# (crimes-against-causality/cases) and lives here under case-studies/ — cloned
+# there by CI, or by you locally. Override the location with the CASES_DIR
+# environment variable.
 #
 # For each case-studies/NN-slug/case-file*.md it:
 #   * reads the YAML front matter (number, title, detective, difficulty,
@@ -53,7 +56,7 @@ root        <- normalizePath(file.path(dirname(sub("--file=", "",
                  grep("--file=", commandArgs(FALSE), value = TRUE)[1])), ".."),
                  mustWork = FALSE)
 if (is.na(root) || !nzchar(root)) root <- normalizePath(".")
-cases_src   <- file.path(root, "case-studies")
+cases_src   <- Sys.getenv("CASES_DIR", unset = file.path(root, "case-studies"))
 book_dir    <- file.path(root, "book")
 dir_cases   <- file.path(book_dir, "cases")
 dir_solns   <- file.path(book_dir, "solutions")
