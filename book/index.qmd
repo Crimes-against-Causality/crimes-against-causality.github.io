@@ -1,38 +1,47 @@
 ---
-title: "Crimes Against Causality"
+title: "A Note to the Detective"
 ---
 
-# Welcome {.unnumbered}
+This book invites you to step into the role of a detective—not of crimes in dark
+alleys, but of claims made in the name of science.
 
-> *"The data never speaks for itself. If the data starts speaking to you, consider seeing a doctor."*
-> — Wilbert Wright
+In each case, you are presented with evidence: a study summary, a striking chart,
+a table of results, or—get your magnifying glasses ready—a model output. The
+claims may sound convincing. They are often confidently stated, widely shared,
+and sometimes even well-intentioned. Your task is to examine the scene, inspect
+the exhibits, and decide for yourself whether the conclusions hold up—or whether
+something has gone wrong.
 
-Every day, confident claims are made in the name of science. A chart shows that
-a music genre is deadlier than war. An algorithm flags the buildings most likely
-to burn. A newspaper names the hospital most likely to kill you. Most of these
-claims are built on real data, honestly collected — and most of them are wrong.
+The cases in this book focus on different kinds of failures. Some involve causal
+claims that go beyond what the data can support—thus the title of this book.
+Others hinge on poor measurement, selective reporting, misuse of AI systems,
+misleading visualizations, or statistical traps that are easy to fall into and
+hard to spot at first glance. Not every case ends with a conviction: a few are
+included precisely because the evidence is solid, the reasoning careful, and the
+conclusions warranted. Learning to recognize good science is just as important as
+learning to detect bad science.
 
-This is a book of **crimes against causality**: cases where valid-looking
-evidence leads to an invalid conclusion. Each case is a puzzle. You are handed
-the crime scene, the exhibits, and a list of questions. Your job is to find the
-fatal flaw before the solution reveals it.
+There is one thing that is particularly important to us: This is not a book about
+science-bashing. Quite the opposite. Science is the best tool we have for
+understanding the world, and a lot of scientific work is done carefully, honestly,
+and with humility. But science is also a human enterprise. It involves imperfect
+data, simplifying assumptions, incentives to communicate dramatically,
+and—especially outside academic journals—shortcuts that can blur important
+nuances. When results travel from papers to press releases to headlines, subtle
+problems can easily turn into bold but misleading claims. And yes, sometimes the
+data, analyses, or conclusions are flawed in the first place.
 
-Work the cases like a detective. Look at who is *missing* from the data. Ask what
-the chart is actually measuring. Notice when an impressive number answers the
-wrong question. The skills you build here — spotting selection effects, base-rate
-traps, confounding, and reversed conditional probabilities — are the same skills
-that separate trustworthy evidence from compelling nonsense.
+The detective analogy is useful because solving these cases rarely requires
+advanced technical knowledge. What it does require is careful reading, logical
+consistency, attention to what is—and is not—being shown, and a healthy dose of
+common sense. Like a good investigator, you will learn to ask simple questions:
+What is missing from the data? What would have to be true for this claim to hold?
+Could this pattern arise for a more mundane reason?
 
-::: {.callout-tip}
-## How this book is organised
-- **Introduction** — how to read the cases, the world they are set in, and the
-  two detectives who investigate them.
-- **The Cases** — start with the [overview table](cases/overview.qmd), then dive
-  into any case that catches your eye.
-- **The Solutions** — the answers, what went wrong, background, and further
-  reading. Each case links straight to its solution (and back).
-- **References & Index** — a combined bibliography and a tag index for finding
-  cases by topic, fallacy, or difficulty.
-:::
+If this book does its job, you will finish it with sharper instincts: a better
+sense for when to be impressed, when to be skeptical, and when to withhold
+judgment. The goal is not to turn you into a cynic, but into a careful reader of
+evidence—someone who appreciates the power of science while being alert to the
+ways it can be misused, misunderstood, or oversold.
 
-Read on, detective. The first crime scene is waiting.
+Welcome to the crime scenes.

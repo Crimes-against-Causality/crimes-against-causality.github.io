@@ -44,3 +44,38 @@ $link-color: #8c1c13;
 table {
   font-size: 0.93rem;
 }
+
+// Decorative case illustrations (atmospheric "fluff" images) that the body
+// text wraps around. Use in a case file like:
+//   ![](some-image.png){.fluff-right}   or   {.fluff-left}
+.fluff-right,
+.fluff-left {
+  width: 38%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 0.6rem;
+  border-radius: 4px;
+}
+.fluff-right {
+  float: right;
+  margin-left: 1.4rem;
+}
+.fluff-left {
+  float: left;
+  margin-right: 1.4rem;
+}
+
+// On narrow screens, stop wrapping and let illustrations span the column.
+@media (max-width: 600px) {
+  .fluff-right,
+  .fluff-left {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+}
+
+// Make sure a section heading after a floated image clears it.
+.quarto-section-content h2 { clear: both; }

@@ -420,6 +420,7 @@ yml <- c(
   paste0("    - \"", BOOK$authors, "\""),
   paste0("  site-url: \"", BOOK$site_url, "\""),
   paste0("  repo-url: \"", BOOK$repo_url, "\""),
+  "  favicon: favicon.svg",
   "  search: true",
   "  page-navigation: true",
   "  chapters:",
@@ -452,7 +453,7 @@ yml <- c(yml,
   "      - cosmo",
   "      - theme.scss",
   "    toc: true",
-  "    number-depth: 1",
+  "    number-sections: false",
   "    fig-cap-location: top",
   "")
 write_utf8(yml, file.path(book_dir, "_quarto.yml"))

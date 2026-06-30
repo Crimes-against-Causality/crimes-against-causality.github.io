@@ -1,42 +1,33 @@
 ---
-title: "How to Read This Book"
+title: "How to Solve the Cases"
 ---
 
-Each case follows the same shape, so you always know where you are.
+1.  **Read the exhibits before reading the claims.**
+    Focus first on what the evidence actually shows, not on how it is described
+    or marketed.
 
-## The structure of a case
+2.  **Translate everything into plain language.**
+    Restate charts, tables, or model outputs in simple terms: what was measured,
+    for whom, and under what conditions.
 
-**The crime scene.** A short narrative sets up a real-looking claim — a study, a
-chart, an algorithm, a headline. Read it the way a skeptical reader should:
-taking the claim seriously, but not on faith.
+3.  **Check what is included—and what is excluded.**
+    Ask whether the data leave out important observations, groups, time periods,
+    or outcomes, intentionally or not.
 
-**The exhibits.** The evidence the claim rests on — figures, tables, summaries.
-The flaw is almost always visible here, if you know where to look.
+4.  **Distinguish facts, measurements, and interpretations.**
+    Separate what was directly observed from how it was summarized, modeled, or
+    explained.
 
-**The interrogation.** A numbered list of questions that walk you from the
-surface of the evidence down to its foundation. Try to answer them yourself
-before reading on. The final question always asks for the fundamental flaw.
+5.  **Look for alternative explanations.**
+    Consider whether the same pattern could arise from measurement choices,
+    selection effects, modeling decisions, or AI system behavior—without any deep
+    or surprising mechanism.
 
-**The solution.** In a separate part of the book, each case has a matching
-solution with the answers, a *What went wrong* explanation, background on the
-real-world episode that inspired it, and sources for further reading.
+6.  **Use common sense.**
+    If a conclusion seems implausibly large, dramatic, or counterintuitive, it
+    probably deserves extra scrutiny.
 
-## How to work a case
-
-1. Read the crime scene and exhibits without scrolling ahead.
-2. Answer the interrogation questions in your own words.
-3. Write down your verdict: what is the fatal flaw?
-4. *Then* open the solution and compare.
-
-The point is not to be right on the first try. The point is to build the reflex
-of asking the right questions — about who is in the data, what is being
-measured, and whether the number on offer actually answers the question being
-asked.
-
-## Difficulty and tags
-
-Every case is tagged with its **topics**, the **fallacies** it exposes, and a
-**difficulty** rating from ● (Easy) to ●●● (Hard). Use the
-[overview table](../cases/overview.qmd) to pick a case, or the
-[index](../appendix-index.qmd) to find cases by a particular theme or reasoning
-error.
+7.  **Avoid overthinking.**
+    In most cases, no external expertise is required; the key flaw can be found by
+    careful reading, logical consistency, and basic reasoning about how the data
+    were produced.
