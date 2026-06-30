@@ -5,7 +5,7 @@ This folder holds the Quarto book backbone for *Crimes Against Causality*.
 [`../scripts/build-book.R`](../scripts/build-book.R) from the case content,
 which lives in a **separate repository**,
 [`crimes-against-causality/cases`](https://github.com/crimes-against-causality/cases).
-CI clones that content into `../case-studies/` before building; for a local
+CI clones that content into `../cases/` before building; for a local
 build, run `make cases` first.
 
 ## What authors edit, and where
@@ -86,14 +86,14 @@ Notes:
 You need [Quarto](https://quarto.org/docs/get-started/) installed.
 
 ```bash
-make cases      # clone/update the case content into ./case-studies
-make build      # regenerate book/ from case-studies/
+make cases      # clone/update the case content into ./cases
+make build      # regenerate book/ from cases/
 make preview    # build, then open a live preview
 make render     # build, then render the static site to book/_book
 make clean      # remove generated chapters and rendered output
 ```
 
-(Or run the steps directly: clone the cases repo into `case-studies/`, then
+(Or run the steps directly: clone the cases repo into `cases/`, then
 `Rscript scripts/build-book.R` and `quarto preview book` / `quarto render book`.
 You can also point the build at any folder with `CASES_DIR=/path Rscript
 scripts/build-book.R`.)

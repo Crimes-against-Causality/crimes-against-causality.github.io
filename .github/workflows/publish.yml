@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fetch case content
-        run: git clone --depth 1 https://github.com/crimes-against-causality/cases.git case-studies
+        run: git clone --depth 1 https://github.com/crimes-against-causality/cases.git cases
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -40,7 +40,7 @@ jobs:
       - name: Install R packages
         run: Rscript -e 'install.packages(c("yaml", "stringr"))'
 
-      - name: Generate chapters from case-studies/
+      - name: Generate chapters from cases/
         run: Rscript scripts/build-book.R
 
       - name: Render book
