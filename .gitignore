@@ -1,0 +1,32 @@
+# --- Private / non-public material (kept on disk, never published) ----------
+# These folders contain third-party copyrighted PDFs, the unpublished
+# manuscript, the pitch, and other working materials. They are intentionally
+# excluded from the public repository.
+/literature/
+/book-draft/
+/pitch/
+/materials/
+
+# Source binaries that are not needed to build the website (and may be
+# copyrighted third-party material — e.g. scanned papers, original charts).
+*.pdf
+*.docx
+*.doc
+*.jpeg
+
+# --- Quarto render output ----------------------------------------------------
+book/_book/
+book/.quarto/
+/.quarto/
+
+# --- Tooling -----------------------------------------------------------------
+.claude/launch.json
+
+# --- R -----------------------------------------------------------------------
+.Rhistory
+.RData
+.Rproj.user/
+
+# --- macOS / Office ----------------------------------------------------------
+.DS_Store
+~$*

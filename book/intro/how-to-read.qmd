@@ -1,0 +1,42 @@
+---
+title: "How to Read This Book"
+---
+
+Each case follows the same shape, so you always know where you are.
+
+## The structure of a case
+
+**The crime scene.** A short narrative sets up a real-looking claim — a study, a
+chart, an algorithm, a headline. Read it the way a skeptical reader should:
+taking the claim seriously, but not on faith.
+
+**The exhibits.** The evidence the claim rests on — figures, tables, summaries.
+The flaw is almost always visible here, if you know where to look.
+
+**The interrogation.** A numbered list of questions that walk you from the
+surface of the evidence down to its foundation. Try to answer them yourself
+before reading on. The final question always asks for the fundamental flaw.
+
+**The solution.** In a separate part of the book, each case has a matching
+solution with the answers, a *What went wrong* explanation, background on the
+real-world episode that inspired it, and sources for further reading.
+
+## How to work a case
+
+1. Read the crime scene and exhibits without scrolling ahead.
+2. Answer the interrogation questions in your own words.
+3. Write down your verdict: what is the fatal flaw?
+4. *Then* open the solution and compare.
+
+The point is not to be right on the first try. The point is to build the reflex
+of asking the right questions — about who is in the data, what is being
+measured, and whether the number on offer actually answers the question being
+asked.
+
+## Difficulty and tags
+
+Every case is tagged with its **topics**, the **fallacies** it exposes, and a
+**difficulty** rating from ● (Easy) to ●●● (Hard). Use the
+[overview table](../cases/overview.qmd) to pick a case, or the
+[index](../appendix-index.qmd) to find cases by a particular theme or reasoning
+error.

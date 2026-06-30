@@ -1,0 +1,38 @@
+---
+title: "Crimes Against Causality"
+---
+
+# Welcome {.unnumbered}
+
+> *"The data never speaks for itself. If the data starts speaking to you, consider seeing a doctor."*
+> — Wilbert Wright
+
+Every day, confident claims are made in the name of science. A chart shows that
+a music genre is deadlier than war. An algorithm flags the buildings most likely
+to burn. A newspaper names the hospital most likely to kill you. Most of these
+claims are built on real data, honestly collected — and most of them are wrong.
+
+This is a book of **crimes against causality**: cases where valid-looking
+evidence leads to an invalid conclusion. Each case is a puzzle. You are handed
+the crime scene, the exhibits, and a list of questions. Your job is to find the
+fatal flaw before the solution reveals it.
+
+Work the cases like a detective. Look at who is *missing* from the data. Ask what
+the chart is actually measuring. Notice when an impressive number answers the
+wrong question. The skills you build here — spotting selection effects, base-rate
+traps, confounding, and reversed conditional probabilities — are the same skills
+that separate trustworthy evidence from compelling nonsense.
+
+::: {.callout-tip}
+## How this book is organised
+- **Introduction** — how to read the cases, the world they are set in, and the
+  two detectives who investigate them.
+- **The Cases** — start with the [overview table](cases/overview.qmd), then dive
+  into any case that catches your eye.
+- **The Solutions** — the answers, what went wrong, background, and further
+  reading. Each case links straight to its solution (and back).
+- **References & Index** — a combined bibliography and a tag index for finding
+  cases by topic, fallacy, or difficulty.
+:::
+
+Read on, detective. The first crime scene is waiting.

@@ -1,0 +1,4 @@
+condition,charon_patients,charon_survivors,elysium_patients,elysium_survivors
+Bone fractures,1200,1128,200,192
+Cardiac events,500,415,300,255
+Gunshot wounds,100,53,400,300
