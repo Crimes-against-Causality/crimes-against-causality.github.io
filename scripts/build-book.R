@@ -46,6 +46,7 @@ BOOK <- list(
   authors  = c("Simon Munzert", "Dylan Thurgood"),
   site_url = "https://crimes-against-causality.github.io/",
   repo_url = "https://github.com/crimes-against-causality/crimes-against-causality.github.io",
+  gallery_title = "The Rogues' Gallery",
   # difficulty code -> human label
   difficulty_labels = c("1" = "Easy", "2" = "Medium", "3" = "Hard")
 )
@@ -232,12 +233,6 @@ for (cs in cases) {
     "---",
     "",
     paste0(GENERATED_NOTE),
-    "::: {.case-meta}",
-    badge_line(cs),
-    "",
-    tag_line(cs),
-    ":::",
-    "",
     cs$case_body,
     "",
     "------------------------------------------------------------------------",
@@ -250,13 +245,11 @@ for (cs in cases) {
   case_rel <- file.path("..", "cases", paste0("case-", cs$n2, ".qmd"))
   write_utf8(c(
     "---",
-    paste0("title: \"", cs$n2, " \u00b7 ", cs$title, " \u2014 Solution\""),
+    paste0("title: \"", cs$n2, " \u00b7 ", cs$title, "\""),
     "---",
     "",
     paste0(GENERATED_NOTE),
     paste0("[\u2190 Back to the case](", case_rel, "){.back-link}"),
-    "",
-    tag_line(cs),
     "",
     "------------------------------------------------------------------------",
     "",
@@ -268,7 +261,7 @@ for (cs in cases) {
 # ---- overview table ---------------------------------------------------------
 
 ov <- c(
-  "---", "title: \"The Cases\"", "---", "",
+  "---", "title: \"Overview\"", "---", "",
   GENERATED_NOTE,
   "Six crimes against causality await. Each one is a real-looking study, chart,",
   "or algorithm with a fatal flaw buried inside it. Read the crime scene, work",
@@ -278,8 +271,8 @@ ov <- c(
   "Cases are investigated by one of two detectives \u2014 see [The Detectives](../intro/detectives.qmd).",
   "Difficulty runs from \u25cf (Easy) to \u25cf\u25cf\u25cf (Hard).",
   "",
-  "| # | Case | Detective | Difficulty | Topics | Fallacies |",
-  "|---|------|-----------|:----------:|--------|-----------|"
+  "| # | Case | Detective | Difficulty | Topics |",
+  "|---|------|-----------|:----------:|--------|"
 )
 for (cs in cases) {
   link <- paste0("[**", cs$title, "**](case-", cs$n2, ".qmd)<br><span class='case-blurb'>",
@@ -289,25 +282,53 @@ for (cs in cases) {
     "|", link,
     "|", cs$detective,
     "|", paste0(difficulty_dots(cs$difficulty), "<br>", difficulty_label(cs$difficulty)),
-    "|", paste(cs$topics, collapse = ", "),
-    "|", paste(cs$fallacies, collapse = ", "), "|"))
+    "|", paste(cs$topics, collapse = ", "), "|"))
 }
 write_utf8(ov, file.path(dir_cases, "overview.qmd"))
 
+# ---- fallacy -> cases mapping (used by the solutions overview and the gallery)
+
+slug <- function(x) {
+  x <- tolower(x)
+  x <- gsub("[^a-z0-9]+", "-", x)
+  gsub("(^-|-$)", "", x)
+}
+
+fallacy_cases <- list()
+for (cs in cases) for (f in cs$fallacies) {
+  fallacy_cases[[f]] <- c(fallacy_cases[[f]], cs$n2)
+}
+
 # ---- solutions landing page -------------------------------------------------
 
-write_utf8(c(
-  "---", "title: \"The Solutions\"", "---", "",
+soln_idx <- c(
+  "---", "title: \"Overview\"", "---", "",
   GENERATED_NOTE,
   "Spoilers ahead. Each solution lays out the answers to the interrogation,",
-  "explains what went wrong, gives the background, and points to further",
-  "reading. Every solution links back to its case.",
+  "explains what went wrong, gives the background, and points to further reading.",
+  "Every solution links back to its case.",
   "",
-  paste0("Jump to: ",
+  paste0("Jump to a solution: ",
     paste(vapply(cases, function(cs)
       paste0("[", cs$n2, "](solution-", cs$n2, ".qmd)"), character(1)),
-      collapse = " \u00b7 "))
-), file.path(dir_solns, "index.qmd"))
+      collapse = " \u00b7 ")),
+  "",
+  "## Fallacies at a glance",
+  "",
+  paste0("Each case turns on one or more *crimes against causality*. Follow a ",
+         "suspect to the [", BOOK$gallery_title,
+         "](../compendium/index.qmd) for a plain-language explanation."),
+  "",
+  "| Fallacy | Cases |",
+  "|---------|-------|"
+)
+for (f in sort(names(fallacy_cases))) {
+  links <- vapply(fallacy_cases[[f]], function(n)
+    paste0("[", n, "](../cases/case-", n, ".qmd)"), character(1))
+  flink <- paste0("[", f, "](../compendium/", slug(f), ".qmd)")
+  soln_idx <- c(soln_idx, paste("|", flink, "|", paste(links, collapse = ", "), "|"))
+}
+write_utf8(soln_idx, file.path(dir_solns, "index.qmd"))
 
 # ---- aggregated bibliography ------------------------------------------------
 
@@ -404,6 +425,84 @@ transform_simple_md(file.path(cases_src, "lore.md"),
                     file.path(dir_intro, "world.qmd"),
                     "The World of Harland")
 
+# ---- the rogues' gallery (fallacy compendium) -------------------------------
+
+# Parse cases/fallacies.md into ordered (name, body) entries, one per "## " head.
+parse_fallacies <- function(path) {
+  if (!file.exists(path)) {
+    warning("fallacies.md not found: ", path); return(list())
+  }
+  lines <- readLines(path, warn = FALSE, encoding = "UTF-8")
+  h <- which(str_detect(lines, "^##\\s"))
+  entries <- list()
+  for (i in seq_along(h)) {
+    start <- h[i]
+    end   <- if (i < length(h)) h[i + 1] - 1 else length(lines)
+    name  <- str_trim(str_replace(lines[start], "^##\\s*", ""))
+    body  <- lines[(start + 1):end]
+    while (length(body) && !nzchar(str_trim(body[1]))) body <- body[-1]
+    while (length(body) && !nzchar(str_trim(body[length(body)]))) body <- body[-length(body)]
+    entries[[length(entries) + 1]] <- list(name = name, body = body)
+  }
+  entries
+}
+
+title_by_n2 <- setNames(
+  vapply(cases, function(cc) cc$title, character(1)),
+  vapply(cases, function(cc) cc$n2, character(1)))
+
+dir_comp <- file.path(book_dir, "compendium")
+dir.create(dir_comp, showWarnings = FALSE, recursive = TRUE)
+
+fallacy_entries <- parse_fallacies(file.path(cases_src, "fallacies.md"))
+gallery_files <- character(0)
+
+# Gallery landing page: the lineup, with a suspect -> cases table.
+gintro <- c(
+  "---", paste0("title: \"", BOOK$gallery_title, "\""), "---", "",
+  GENERATED_NOTE,
+  "Every case in this book is the work of a recurring suspect: a way of reading",
+  "evidence that turns honest data into a false conclusion. This is the lineup.",
+  "",
+  "Each suspect below gets a short, plain-language file — no technical training",
+  "required, only the willingness to ask one more question before believing a",
+  "number.",
+  "",
+  "| Suspect | Caught in |",
+  "|---------|-----------|"
+)
+for (e in fallacy_entries) {
+  ns <- fallacy_cases[[e$name]]
+  caught <- if (is.null(ns)) "—" else
+    paste(vapply(ns, function(n) paste0("[", n, "](../cases/case-", n, ".qmd)"),
+                 character(1)), collapse = ", ")
+  gintro <- c(gintro, paste0("| [", e$name, "](", slug(e$name), ".qmd) | ", caught, " |"))
+}
+write_utf8(gintro, file.path(dir_comp, "index.qmd"))
+gallery_files <- c(gallery_files, "compendium/index.qmd")
+
+# One page per suspect.
+for (e in fallacy_entries) {
+  ns <- fallacy_cases[[e$name]]
+  caught <- if (is.null(ns)) character(0) else c("",
+    paste0("**Caught in:** ",
+      paste(vapply(ns, function(n)
+        paste0("[", n, " · ", title_by_n2[[n]], "](../cases/case-", n, ".qmd)"),
+        character(1)), collapse = ", ")))
+  pg <- c("---", paste0("title: \"", e$name, "\""), "---", "",
+          GENERATED_NOTE, e$body, caught, "")
+  write_utf8(pg, file.path(dir_comp, paste0(slug(e$name), ".qmd")))
+  gallery_files <- c(gallery_files, paste0("compendium/", slug(e$name), ".qmd"))
+}
+
+# Sanity check: every fallacy tagged on a case should have an explanation.
+missing_def <- setdiff(names(fallacy_cases),
+                       vapply(fallacy_entries, function(e) e$name, character(1)))
+if (length(missing_def)) {
+  warning("Fallacies tagged in cases but missing from fallacies.md: ",
+          paste(missing_def, collapse = "; "))
+}
+
 # ---- _quarto.yml ------------------------------------------------------------
 
 yml <- c(
@@ -442,6 +541,10 @@ yml <- c(yml,
   "        - solutions/index.qmd")
 yml <- c(yml, vapply(cases, function(cs)
   paste0("        - solutions/solution-", cs$n2, ".qmd"), character(1)))
+yml <- c(yml,
+  paste0("    - part: \"", BOOK$gallery_title, "\""),
+  "      chapters:")
+yml <- c(yml, paste0("        - ", gallery_files))
 yml <- c(yml,
   "  appendices:",
   "    - references.qmd",
