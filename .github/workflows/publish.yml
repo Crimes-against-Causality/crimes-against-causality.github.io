@@ -3,10 +3,12 @@ name: Publish book
 on:
   push:
     branches: [main]
-  # Fired by the cases repository (crimes-against-causality/cases) whenever its
-  # content changes, so the site rebuilds with the latest cases.
-  repository_dispatch:
-    types: [cases-updated]
+  # Rebuild on a schedule so edits pushed to the cases repo
+  # (crimes-against-causality/cases) appear on the site automatically, without
+  # any cross-repo token. Runs every 30 minutes; GitHub may delay scheduled
+  # runs under load. Widen the interval to reduce Actions noise.
+  schedule:
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:
