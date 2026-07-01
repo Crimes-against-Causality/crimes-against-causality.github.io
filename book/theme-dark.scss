@@ -1,0 +1,47 @@
+/*-- scss:defaults --*/
+
+// "Noir" palette: near-black paper, warm off-white ink, a blood-red accent —
+// with a typewriter face for headings and a serif for body text. Fonts are
+// loaded in fonts-header.html. Structural rules live in theme-common.scss.
+$body-bg:          #0d0d0f;
+$body-color:       #e7e3d8;
+$primary:          #c0392b;   // blood red
+$link-color:       #e0554a;
+$link-hover-color: #f2796d;
+$headings-color:   #f4f1ea;
+$border-color:     #2b2b30;
+
+$font-family-sans-serif: "Crimson Pro", Georgia, "Times New Roman", serif;
+$headings-font-family:   "Special Elite", "Courier New", ui-monospace, monospace;
+
+/*-- scss:rules --*/
+
+body { background-color: $body-bg; }
+
+// Typewriter headings and brand, with a little breathing room.
+h1, h2, h3, h4,
+.quarto-title-block .title {
+  font-family: "Special Elite", "Courier New", monospace;
+  letter-spacing: 0.01em;
+}
+.navbar-brand,
+.sidebar-title,
+.sidebar .chapter-title {
+  font-family: "Special Elite", "Courier New", monospace;
+}
+
+// Deepen the chrome so the whole page reads noir, not just the content column.
+.navbar,
+.sidebar,
+#quarto-sidebar,
+.quarto-secondary-nav {
+  background-color: #0a0a0c !important;
+}
+
+// Warm, dim code blocks.
+pre, code, .sourceCode {
+  background-color: #17171a;
+}
+
+// Exhibit captions and figure text sit a touch brighter than body.
+figcaption { color: #b9b4a8; }

@@ -161,6 +161,16 @@ tidy_headings <- function(body) {
   body
 }
 
+# Fold "## Exhibit N: ..." headings into the crime-scene flow. Exhibits are part
+# of the scene, not separate sections, so turn the heading into a bold label.
+fold_exhibits <- function(body) {
+  is_h <- str_detect(body, "^#{1,6}\\s")
+  txt  <- str_replace(body, "^#{1,6}\\s*", "")
+  hit  <- is_h & str_detect(txt, regex("^\\**exhibit\\b", ignore_case = TRUE))
+  body[hit] <- paste0("**", str_trim(str_replace_all(txt[hit], "\\*+", "")), "**")
+  body
+}
+
 difficulty_label <- function(d) {
   lbl <- BOOK$difficulty_labels[as.character(d)]
   if (is.na(lbl)) as.character(d) else unname(lbl)
@@ -194,7 +204,7 @@ for (cd in case_dirs) {
   n2     <- pad2(num)
 
   parts    <- split_case_solution(parsed$body, meta$slug %||% basename(cd))
-  case_body <- tidy_headings(relocate_images(parts$case, cd, dir_cases, n2))
+  case_body <- fold_exhibits(tidy_headings(relocate_images(parts$case, cd, dir_cases, n2)))
   soln_body <- tidy_headings(relocate_images(parts$solution, cd, dir_solns, n2))
 
   cases[[length(cases) + 1]] <- list(
@@ -553,8 +563,15 @@ yml <- c(yml,
   "format:",
   "  html:",
   "    theme:",
-  "      - cosmo",
-  "      - theme.scss",
+  "      light:",
+  "        - cosmo",
+  "        - theme-common.scss",
+  "        - theme.scss",
+  "      dark:",
+  "        - darkly",
+  "        - theme-common.scss",
+  "        - theme-dark.scss",
+  "    include-in-header: fonts-header.html",
   "    toc: true",
   "    number-sections: false",
   "    fig-cap-location: top",

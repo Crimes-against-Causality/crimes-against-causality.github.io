@@ -1,0 +1,56 @@
+/*-- scss:rules --*/
+
+// Structural rules shared by both the light and the noir theme. Colours come
+// from each theme's palette via $primary, so these adapt automatically.
+
+// Reveal-the-solution / back-to-case navigation links.
+.solution-link,
+.back-link {
+  display: inline-block;
+  font-weight: 600;
+}
+.solution-link {
+  padding: 0.55rem 1rem;
+  background: $primary;
+  color: #fff !important;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.solution-link:hover { filter: brightness(0.92); }
+.back-link { color: $primary; }
+
+// Case blurb in the overview table (adapts to either background).
+.case-blurb {
+  font-weight: 400;
+  font-size: 0.85rem;
+  opacity: 0.72;
+}
+
+table { font-size: 0.93rem; }
+
+// Decorative case illustrations that the body text wraps around:
+//   ![](image.png){.fluff-right}   or   {.fluff-left}
+.fluff-right,
+.fluff-left {
+  width: 38%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 0.6rem;
+  border-radius: 4px;
+}
+.fluff-right { float: right; margin-left: 1.4rem; }
+.fluff-left  { float: left;  margin-right: 1.4rem; }
+
+@media (max-width: 600px) {
+  .fluff-right,
+  .fluff-left {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+}
+
+// A section heading after a floated illustration should clear it.
+.quarto-section-content h2 { clear: both; }
