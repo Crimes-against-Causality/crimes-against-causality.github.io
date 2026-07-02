@@ -5,3 +5,14 @@
 $primary:    #8c1c13;   // case-file red
 $body-color: #1f2328;
 $link-color: #8c1c13;
+
+/*-- scss:rules --*/
+
+// Author colour-coding of the sidebar/ToC (light theme). Slots are assigned in
+// scripts/build-book.R; a = first author, b = second, ...
+:root {
+  --author-a: #1f6feb;  // blue
+  --author-b: #b5651d;  // amber
+  --author-c: #2f7d4f;  // green
+  --author-d: #7b3fb0;  // purple
+}

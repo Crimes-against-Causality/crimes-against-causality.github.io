@@ -29,5 +29,5 @@ render: build
 clean:
 	rm -rf book/_book
 	rm -rf book/cases book/solutions book/compendium
-	rm -f book/references.qmd book/appendix-index.qmd book/_quarto.yml
+	rm -f book/references.qmd book/appendix-index.qmd book/_quarto.yml book/author-colors.css
 	rm -f book/intro/detectives.qmd book/intro/world.qmd

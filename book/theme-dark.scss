@@ -45,3 +45,12 @@ pre, code, .sourceCode {
 
 // Exhibit captions and figure text sit a touch brighter than body.
 figcaption { color: #b9b4a8; }
+
+// Author colour-coding of the sidebar/ToC (noir theme) — brighter shades so
+// they read on the near-black sidebar. Slots match theme.scss.
+:root {
+  --author-a: #6cb0ff;  // blue
+  --author-b: #e0a458;  // amber
+  --author-c: #74c69d;  // green
+  --author-d: #c9a0ff;  // purple
+}
