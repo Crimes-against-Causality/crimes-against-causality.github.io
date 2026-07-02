@@ -54,3 +54,20 @@ table { font-size: 0.93rem; }
 
 // A section heading after a floated illustration should clear it.
 .quarto-section-content h2 { clear: both; }
+
+// Label the light/dark switch: "noir – plain" on its own line under the icon.
+.quarto-color-scheme-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+}
+.quarto-color-scheme-toggle::after {
+  content: "noir – plain";
+  display: block;
+  margin-top: 2px;
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  opacity: 0.75;
+  white-space: nowrap;
+}
