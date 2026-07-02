@@ -19,7 +19,12 @@ build, run `make cases` first.
 | Change colours / styling         | `book/theme.scss` — **site repo**                           |
 | Change the book title / authors  | the `BOOK` list in `scripts/build-book.R` — **site repo**   |
 
-A push to the **cases** repo automatically rebuilds and redeploys the site.
+The site rebuilds on a schedule (about every half hour) and pulls the latest
+cases; to deploy immediately, run the **Publish book** workflow.
+
+Each case also carries an `author` field, which colour-codes its title in the
+sidebar; the colours are defined per theme in `book/theme.scss` and
+`book/theme-dark.scss`.
 
 Everything else under `book/` (`cases/`, `solutions/`, `overview.qmd`,
 `references.qmd`, `appendix-index.qmd`, `intro/detectives.qmd`,
@@ -39,6 +44,7 @@ number: 7                       # case number (controls order & numbering)
 slug: my-new-case               # url-friendly id
 title: "My New Case"            # display title
 detective: "Nora Nightingale"   # Wilbert Wright | Nora Nightingale
+author: "Simon Munzert"         # colour-codes the case's title in the sidebar/ToC
 difficulty: 2                   # 1 = Easy, 2 = Medium, 3 = Hard
 topics: [Machine learning, Public health]   # free-form tags
 fallacies: [Base rate neglect]              # free-form tags
